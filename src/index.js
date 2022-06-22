@@ -18,10 +18,11 @@ const deleteToDo = id => {
 const reducer = (state = [], action) => {
   switch (action.type) {
     case ADD_TODO:
-      return [{ text: action.text, id: Date.now() }, ...state]
+      const newObject = { text: action.text, id: Date.now() };
+      return [newObject, ...state]
     case DELETE_TODO:
-      // 배열형태의 state를 직접적으로 변경하면 안되기 때문에 filter() 메서드를 통해 새로운 배열을 만들어서 반환
-      return state.filter(toDo => toDo !== parseInt(action.id));
+      // state를 직접 수정하지 않고 새로운 배열을 만들어서 반환
+      return state.filter(toDo => toDo.id !== parseInt(action.id));
     default:
       return state;
   }
@@ -50,7 +51,8 @@ form.addEventListener('submit', onSubmit);
 
 const paintTodo = () => {
   const toDos = store.getState();
-  ul.innerText = '';
+  ul.innerText = ''; // list 전체를 먼저 비우고
+  // 업데이트도니 toDos에 따라 새로 그린다
   toDos.forEach(toDo => {
     const li = document.createElement('li');
     const btn = document.querySelector('button');
@@ -62,5 +64,6 @@ const paintTodo = () => {
   })
 }
 
+// toDos의 변화감지
 store.subscribe(paintTodo);
 
