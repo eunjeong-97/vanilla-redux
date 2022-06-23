@@ -24,6 +24,6 @@ const store = createStore(reducer);
 
 store.subscribe();
 
-export default store;
+export const actionCreators = { addToDo, deleteToDo };
 
-// store.getState(); 현재의 state 정보를 가지고 온다
+export default store;
