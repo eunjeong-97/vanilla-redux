@@ -3,9 +3,8 @@ import { actionCreators } from "../store";
 
 import ToDo from "../components/ToDo";
 
-function Home(props) {
+function Home({ toDos, addToDo }) {
     const [text, setText] = useState('');
-    const { toDos, addToDo } = props;
 
     function onChange(e) {
         setText(e.taget.value);
@@ -13,8 +12,8 @@ function Home(props) {
 
     function onSubmit(e) {
         e.preventDefault();
+        addToDo(text);
         setText('')
-        addToDo(e.target.value);
     }
     return (
         <>
@@ -29,10 +28,10 @@ function Home(props) {
 }
 
 function mapStateToProps(state) {
-    return { state };
+    return { toDos: state };
 }
 
-function mapDispatchToProps(dispatch, ownProps) {
+function mapDispatchToProps(dispatch) {
     return {
         addToDo: text => dispatch(actionCreators.addToDo(text))
     };
