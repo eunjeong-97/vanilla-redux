@@ -22,9 +22,8 @@ const reducer = (state = [], action) => {
 }
 const store = createStore(reducer);
 
-// === 무슨말이지?? ===
-// store의 변화가 감지되엇을때 리렌더링되기를 원한다
-// react는 모든 것을 다시 render해주지 않는다 변화가 된부분만 리렌더링해준다
 store.subscribe();
 
 export default store;
+
+// store.getState(); 현재의 state 정보를 가지고 온다
