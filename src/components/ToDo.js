@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import { actionCreators } from '../store';
 import { remove } from '../store';
 
 function ToDo({ text, id, onBtnClick }) {
@@ -15,7 +14,6 @@ function ToDo({ text, id, onBtnClick }) {
 
 function mapDispatchToProps(dispatch, ownProps) {
     return {
-        // onBtnClick: () => dispatch(actionCreators.deleteToDo(parseInt(ownProps.id)))
         onBtnClick: () => dispatch(remove(parseInt(ownProps.id)))
     }
 }
